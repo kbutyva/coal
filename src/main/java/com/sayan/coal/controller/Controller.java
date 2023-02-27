@@ -1,0 +1,53 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.sayan.coal.controller;
+
+import com.sayan.coal.entity.Vizit;
+import com.sayan.coal.repository.VizitRepository;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+
+public class Controller {
+    
+    @Autowired
+    VizitRepository vizitRepository;
+    
+    @GetMapping("/vizits")
+    public List<Vizit> getVizits(){
+        List<Vizit> list = new ArrayList<>();
+        vizitRepository.findAll().forEach(list::add);
+        return list;
+    }
+    
+    @PostMapping("/add")
+    public void addVizit(@RequestBody Vizit vizit){
+        
+        vizitRepository.save(vizit);
+    }
+    @GetMapping("/find")
+    public List<Vizit> findVizit(@RequestParam("phone") long phone){
+        List<Vizit> list = new ArrayList<>();
+        
+        while (vizitRepository.findByPhone(phone)!=null) {
+            list.add(vizitRepository.findByPhone(phone));
+            
+        }
+         return list;
+    }
+//    @PostMapping("/add")
+//    public void addVizit(long phone, String ulitsa, String dom, int kv){
+//        Vizit vizit = new Vizit(phone, ulitsa, dom, kv);
+//        
+//        vizitRepository.save(vizit);
+//    }
+}

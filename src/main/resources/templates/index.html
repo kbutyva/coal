@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+        <style>
+            body{
+                margin: 20px 20px 20px 20px;
+                padding: 20px 20px 20px 20px
+            }
+            form{border: 2px; margin: 1px 1px 1px 1px}
+            div{margin: 1px 1px 1px 1px}
+        </style>
+
+        <title>XOMYP</title>
+    </head>
+    <body>
+        <br />
+        <br />
+        <form id="addVizit">
+            <input type="text" id="vizit_phone" placeholder="telefon" /><br />
+            <input type="text" id="vizit_ulitsa" placeholder="ulitsa" /><br />
+            <input type="text" id="vizit_dom" placeholder="dom" /><br />
+            <input type="text" id="vizit_kv" placeholder="kv" /><br />
+            <input type="button" onclick="sendVizit()" value="Добавить"/>
+        </form><br />
+        <br />
+        <div id="vizit">
+
+        </div><br />
+
+        <br />
+        <form id="find_vizit">
+            <input type="text" id="findByPhone" placeholder="telefon" />
+            <input type="button" onclick="searchVizit()" value="Найти" /><br/>
+        </form>
+        <br />
+        <div id="found"></div>
+        <script>
+
+            function searchVizit() {
+                $.ajax({
+                    url: '/find',
+                    dataType: 'json',
+                    type: 'GET',
+                    cache: false,
+                    contentType: 'application/json',
+                    data: {phone: $('#findByPhone').val()},
+                    success:
+                            function (data) {
+                                console.log(data);
+
+                                let resultTable = "<table border='1'><tr><th>telefon</th><th>ulitsa</th><th>dom</th><th>kv</th>" +
+                                        "<tr><td>" + data['phone'] + "</td><td>" + data['ulitsa'] + "</td><td>" + data['dom'] + "</td><td>" +
+                                        data['kv'] + "</td></tr>";
+
+                                $('#found').html(resultTable);
+                            }
+
+                });
+            }
+
+            function showVizits() {
+                $.get('vizits', function (input) {
+                    console.log(input);
+
+                    let table = "<table border='1'><tr><th>telefon</th><th>ulitsa</th><th>dom</th><th>kv</th>";
+                    for (let i = 0; i < input.length; i++) {
+                        table = table + "<tr><td>" + input[i]['phone'] + "</td><td>" + input[i]['ulitsa']
+                                + "</td><td>" + input[i]['dom'] + "</td><td>" + input[i]['kv'] + "</td></tr>";
+                    }
+                    table = table + "</table>";
+                    $('#vizit').html(table);
+                });
+            }
+
+            $(document).ready(function () {
+                showVizits();
+
+            });
+
+            function sendVizit() {
+                $.ajax({
+                    url: '/add',
+                    dataType: 'json',
+                    type: 'POST',
+                    cache: false,
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        phone: $('#vizit_phone').val(),
+                        ulitsa: $('#vizit_ulitsa').val(),
+                        dom: $('#vizit_dom').val(),
+                        kv: $('#vizit_kv').val()
+                    }), success: function () {
+                        showVizits();}
+                });
+            }
+        </script> 
+
+    </body>    
+
+</html>   
+
+
