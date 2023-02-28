@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+        <style>
+            body{
+                margin: 20px 20px 20px 20px;
+                padding: 20px 20px 20px 20px
+            }
+            form{border: 2px; margin: 1px 1px 1px 1px}
+            div{margin: 1px 1px 1px 1px}
+        </style>
+
+        <title>XOMYP</title>
+    </head>
+    <body>
+        
+
+        <br />
+        <form id="find_vizit">
+            <input type="text" id="findByPhone" placeholder="telefon" />
+            <input type="button" onclick="searchVizit()" value="Найти" /><br/>
+        </form>
+        <br />
+        <div id="found"></div>
+        <script>
+
+            function searchVizit() {
+                $.ajax({
+                    url: '/search',
+                    dataType: 'json',
+                    type: 'GET',
+                    cache: false,
+                    contentType: 'application/json',
+                    data: {phone: $('#findByPhone').val()},
+                    success:
+                            function (data) {
+                                console.log(data);
+
+                                let resultTable = "<table border='1'><tr><th>telefon</th><th>ulitsa</th><th>dom</th><th>kv</th>";
+                                    for(let i = 0; i<data.length;i++){
+                                        resultTable=resultTable+"<tr><td>" + data[i]['phone'] + "</td><td>" + data[i]['ulitsa']
+                                                + "</td><td>" + data[i]['dom'] + "</td><td>" +
+                                        data[i]['kv'] + "</td></tr>";
+                                    }
+                                resultTable = resultTable+"</table>";
+                                $('#found').html(resultTable);
+                            }
+
+                });
+            }
+
+        </script> 
+
+    </body>    
+
+</html>   
+
+

@@ -19,4 +19,8 @@ public class WebController {
         return "index";
     }
     
+    @RequestMapping("/search")
+    public String search(){
+        return "search";
+    }
 }
