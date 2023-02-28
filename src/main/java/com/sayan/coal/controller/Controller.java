@@ -34,7 +34,7 @@ public class Controller {
         
         vizitRepository.save(vizit);
     }
-    @GetMapping("/search")
+    @GetMapping("/search/byPhone")
     public List<Vizit> findVizit(@RequestParam("phone") long phone){
         List<Vizit> list = new ArrayList<>();
 

@@ -42,9 +42,10 @@
                 $.get('vizits', function (input) {
                     console.log(input);
 
-                    let table = "<table border='1'><tr><th>telefon</th><th>ulitsa</th><th>dom</th><th>kv</th>";
+                    let table = "<table border='1'><tr><th>date</th><th>telefon</th><th>ulitsa</th><th>dom</th><th>kv</th>";
                     for (let i = 0; i < input.length; i++) {
-                        table = table + "<tr><td>" + input[i]['phone'] + "</td><td>" + input[i]['ulitsa']
+                        table = table + "<tr><td>" + input[i]['date'] +"</td><td>"
+                                + input[i]['phone'] + "</td><td>" + input[i]['ulitsa']
                                 + "</td><td>" + input[i]['dom'] + "</td><td>" + input[i]['kv'] + "</td></tr>";
                     }
                     table = table + "</table>";
