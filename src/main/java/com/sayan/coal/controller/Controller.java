@@ -6,6 +6,7 @@ package com.sayan.coal.controller;
 
 import com.sayan.coal.entity.Vizit;
 import com.sayan.coal.repository.VizitRepository;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,8 @@ public class Controller {
     
     @PostMapping("/add")
     public void addVizit(@RequestBody Vizit vizit){
-        
+        LocalDate date = LocalDate.now();
+        vizit.setDate(date);
         vizitRepository.save(vizit);
     }
     @GetMapping("/search/byPhone")

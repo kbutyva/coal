@@ -3,7 +3,7 @@ package com.sayan.coal.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import java.util.Date;
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +20,7 @@ public class Vizit {
     
     private long phone;
     
-    Date date;
+    LocalDate date;
     
 //    String marka;
 //    String model;
