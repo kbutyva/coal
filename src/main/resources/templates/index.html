@@ -54,10 +54,13 @@
                             function (data) {
                                 console.log(data);
 
-                                let resultTable = "<table border='1'><tr><th>telefon</th><th>ulitsa</th><th>dom</th><th>kv</th>" +
-                                        "<tr><td>" + data['phone'] + "</td><td>" + data['ulitsa'] + "</td><td>" + data['dom'] + "</td><td>" +
-                                        data['kv'] + "</td></tr>";
-
+                                let resultTable = "<table border='1'><tr><th>telefon</th><th>ulitsa</th><th>dom</th><th>kv</th>";
+                                    for(let i = 0; i<data.length;i++){
+                                        resultTable=resultTable+"<tr><td>" + data[i]['phone'] + "</td><td>" + data[i]['ulitsa']
+                                                + "</td><td>" + data[i]['dom'] + "</td><td>" +
+                                        data[i]['kv'] + "</td></tr>";
+                                    }
+                                resultTable = resultTable+"</table>";
                                 $('#found').html(resultTable);
                             }
 

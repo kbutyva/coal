@@ -37,12 +37,10 @@ public class Controller {
     @GetMapping("/find")
     public List<Vizit> findVizit(@RequestParam("phone") long phone){
         List<Vizit> list = new ArrayList<>();
-        
-        while (vizitRepository.findByPhone(phone)!=null) {
-            list.add(vizitRepository.findByPhone(phone));
-            
-        }
-         return list;
+
+        vizitRepository.findAllByPhone(phone).forEach(list::add);
+        System.out.println(list);
+         return list;   
     }
 //    @PostMapping("/add")
 //    public void addVizit(long phone, String ulitsa, String dom, int kv){
