@@ -23,10 +23,17 @@ public class Controller {
     @Autowired
     VizitRepository vizitRepository;
     
-    @GetMapping("/vizits")
+    @GetMapping("/allVizits")
     public List<Vizit> getVizits(){
         List<Vizit> list = new ArrayList<>();
         vizitRepository.findAll().forEach(list::add);
+        return list;
+    }
+    
+    @GetMapping("/vizits")
+    public List<Vizit> getLast10Vizits(){
+        List<Vizit> list = new ArrayList<>();
+        vizitRepository.findLast10Vizits().forEach(list::add);
         return list;
     }
     
