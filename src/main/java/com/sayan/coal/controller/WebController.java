@@ -4,6 +4,7 @@
  */
 package com.sayan.coal.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 /**
@@ -14,12 +15,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class WebController {
     
-    @RequestMapping("/")
+    @RequestMapping("/logout")
+    public String all(){
+        return "all";
+    }
+    
+    @RequestMapping("/index")
+  
     public String index(){
         return "index";
     }
     
     @RequestMapping("/search")
+  
     public String search(){
         return "search";
     }

@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +32,7 @@ public class Controller {
     }
     
     @GetMapping("/vizits")
+   
     public List<Vizit> getLast10Vizits(){
         List<Vizit> list = new ArrayList<>();
         vizitRepository.findLast10Vizits().forEach(list::add);
@@ -38,12 +40,14 @@ public class Controller {
     }
     
     @PostMapping("/add")
+    
     public void addVizit(@RequestBody Vizit vizit){
         LocalDate date = LocalDate.now();
         vizit.setDate(date);
         vizitRepository.save(vizit);
     }
     @GetMapping("/search/byPhone")
+  
     public List<Vizit> findVizit(@RequestParam("phone") long phone){
         List<Vizit> list = new ArrayList<>();
 

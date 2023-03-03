@@ -15,12 +15,13 @@
             form{border: 2px; margin: 1px 1px 1px 1px}
             div{margin: 1px 1px 1px 1px}
             td{padding: 3px 3px 3px 3px}
+            table{width: 100%}
         </style>
 
         <title>XOMYP</title>
     </head>
     <body>
-        <a href="http://localhost:8888/">Перейти на главную</a>
+        <a href="http://localhost:8888/index">Перейти на главную</a>
 
         <br />
         <br />
@@ -45,9 +46,10 @@
                             function (data) {
                                 console.log(data);
 
-                                let resultTable = "<table border='1'><tr><th>telefon</th><th>ulitsa</th><th>dom</th><th>kv</th>";
+                                let resultTable = "<table border='1'><tr><th>date</th><th>telefon</th><th>ulitsa</th><th>dom</th><th>kv</th>";
                                     for(let i = 0; i<data.length;i++){
-                                        resultTable=resultTable+"<tr><td>" + data[i]['phone'] + "</td><td>" + data[i]['ulitsa']
+                                        resultTable=resultTable+"<tr><td>" + data[i]['date'] +"</td><td>"
+                                + data[i]['phone'] + "</td><td>" + data[i]['ulitsa']
                                                 + "</td><td>" + data[i]['dom'] + "</td><td>" +
                                         data[i]['kv'] + "</td></tr>";
                                     }

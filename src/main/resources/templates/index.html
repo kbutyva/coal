@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -15,13 +14,17 @@
             form{border: 2px; margin: 1px 1px 1px 1px}
             div{margin: 1px 1px 1px 1px}
             td{padding: 3px 3px 3px 3px}
+            table{width: 100%}
         </style>
 
-        <title>XOMYP</title>
+        <title>ХOMYP TEMA</title>
     </head>
     <body>
-        <a href="http://localhost:8888/search">Найти "Визит"</a>
-        <br />
+        <table>
+            <tr><td><a href="http://localhost:8888/search">Найти "Визит"</a></td>
+                <td></td>
+                <td align="right"><a href="http://localhost:8888/logout">Выход</a></td></tr>
+        </table>
         <br />
         <form id="addVizit">
             <input type="text" id="vizit_phone" placeholder="telefon" /><br />
