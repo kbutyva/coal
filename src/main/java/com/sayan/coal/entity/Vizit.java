@@ -30,7 +30,7 @@ public class Vizit {
     private String dom;
     private int kv;
     
-//    float price;
+    private float price;
 //    float weight;
 //    float sum;
     
